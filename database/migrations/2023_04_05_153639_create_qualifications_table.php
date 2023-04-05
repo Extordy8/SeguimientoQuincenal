@@ -16,10 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('matter_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('student_id');
+            $table->timestamps();
+
             $table->foreign('matter_id')->references('id')->on('matters')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
