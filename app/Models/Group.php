@@ -14,4 +14,10 @@ class Group extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    //many-to-many matter-to-group relationship
+    public function matters()
+    {
+        return $this->belongsToMany(Matter::class);
+    }
 }
