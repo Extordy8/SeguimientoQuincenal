@@ -14,4 +14,10 @@ class Student extends Model
     {
         return $this->hasMany(Qualification::class);
     }
+
+    //one-to-many relationship of the student to the group
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }
