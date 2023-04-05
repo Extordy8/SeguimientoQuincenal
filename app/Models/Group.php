@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     use HasFactory;
+    
+    //many-to-many user-to-group relationship
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
