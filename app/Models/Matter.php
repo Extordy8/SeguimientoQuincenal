@@ -14,4 +14,10 @@ class Matter extends Model
     {
         return $this->belongsToMany(Group::class);
     }
+
+    //many-to-one relationship between qualification and matter
+    public function qualifications()
+    {
+        return $this->hasMany(Qualification::class);
+    }
 }

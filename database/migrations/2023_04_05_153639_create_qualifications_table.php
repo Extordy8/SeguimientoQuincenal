@@ -16,6 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('matter_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('student_id');
+            $table->integer('platform');
+            $table->integer('classwork');
+            $table->integer('assistance');
+            $table->integer('advisory');
+            $table->integer('observations');
+
             $table->timestamps();
 
             $table->foreign('matter_id')->references('id')->on('matters')->onDelete('cascade');
