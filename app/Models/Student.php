@@ -9,15 +9,11 @@ class Student extends Model
 {
     use HasFactory;
 
-    //many-to-one relationship between qualification and student
+    //The student relationship through group, matter has many qualifications
     public function qualifications()
     {
-        return $this->hasMany(Qualification::class);
-    }
-
-    //one-to-many relationship of the student to the group
-    public function group()
-    {
-        return $this->belongsTo(Group::class);
+        return $this->hasManyThrough(Qualification::class, Group::class, 'student_id', 'group_id')
+                    ->join('matters', 'groups.matter_id', '=', 'matters.id')
+                    ->select('qualifications.*', 'matters.name as matter_name');
     }
 }

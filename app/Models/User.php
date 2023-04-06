@@ -42,15 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-     //many-to-many user-to-group relationship
-     public function groups()
+     //The user relationship through group, matter has many qualifications
+     public function qualifications()
     {
-        return $this->belongsToMany(Group::class);
-    }
-
-    //many-to-one relationship between qualification and user
-    public function qualifications()
-    {
-        return $this->hasMany(Qualification::class);
+        return $this->hasManyThrough(Qualification::class, Group::class, 'user_id', 'group_id', 'id', 'id')
+                    ->join('matters', 'groups.matter_id', '=', 'matters.id')
+                    ->select('qualifications.*', 'matters.name as matter_name');
     }
 }

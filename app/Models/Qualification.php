@@ -21,9 +21,9 @@ class Qualification extends Model
         return $this->belongsTo(Student::class);
     }
 
-    //many-to-one relationship between qualification and user
-    public function user()
+    //many-to-one relationship between qualification and group
+    public function group()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Group::class);
     }
 }

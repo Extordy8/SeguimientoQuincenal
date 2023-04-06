@@ -20,4 +20,10 @@ class Group extends Model
     {
         return $this->belongsToMany(Matter::class);
     }
+
+    //one-to-many relationship of the student to the group
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }
