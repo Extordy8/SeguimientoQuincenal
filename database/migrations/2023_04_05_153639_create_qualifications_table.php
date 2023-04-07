@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('platform');
             $table->integer('classwork');
             $table->integer('assistance');
-            $table->integer('advisory');
-            $table->integer('observations');
+            $table->boolean('advisory')->default(false);
+            $table->string('observations');
 
             $table->timestamps();
 

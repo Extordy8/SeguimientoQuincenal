@@ -43,10 +43,21 @@ class User extends Authenticatable
     ];
 
      //The user relationship through group, matter has many qualifications
-     public function qualifications()
+     public function group()
     {
-        return $this->hasManyThrough(Qualification::class, Group::class, 'user_id', 'group_id', 'id', 'id')
-                    ->join('matters', 'groups.matter_id', '=', 'matters.id')
-                    ->select('qualifications.*', 'matters.name as matter_name');
+        return $this->belongsTo(Group::class);
+    }
+
+    public function qualificationsForMatter($matter_id)
+    {
+        return $this->hasManyThrough(
+            Qualification::class,
+            Group::class,
+            'student_id', // Foreign key on the Group table
+            'group_id', // Foreign key on the Qualification table
+            'id', // Local key on the Student table
+            'id' // Local key on the Group table
+        )
+        ->where('groups.matter_id', $matter_id);
     }
 }
